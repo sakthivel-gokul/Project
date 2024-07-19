@@ -1,0 +1,117 @@
+HTML (index.html):
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculator App</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Calculator App</h1>
+	<form>
+		<input type="text" id="display" readonly>
+		<input type="button" value="C" onclick="clearDisplay()">
+		<input type="button" value="<<" onclick="backspace()">
+		<input type="button" value="/" onclick="addOperator('/')">
+		<input type="button" value="*" onclick="addOperator('*')">
+		<input type="button" value="7" onclick="addNumber('7')">
+		<input type="button" value="8" onclick="addNumber('8')">
+		<input type="button" value="9" onclick="addNumber('9')">
+		<input type="button" value="-" onclick="addOperator('-')">
+		<input type="button" value="4" onclick="addNumber('4')">
+		<input type="button" value="5" onclick="addNumber('5')">
+		<input type="button" value="6" onclick="addNumber('6')">
+		<input type="button" value="+" onclick="addOperator('+')">
+		<input type="button" value="1" onclick="addNumber('1')">
+		<input type="button" value="2" onclick="addNumber('2')">
+		<input type="button" value="3" onclick="addNumber('3')">
+		<input type="button" value="=" onclick="calculate()">
+		<input type="button" value="0" onclick="addNumber('0')">
+		<input type="button" value="." onclick="addDecimal()">
+	</form>
+	<script src="script.js"></script>
+</body>
+</html>
+
+CSS (style.css):
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+}
+
+form {
+	width: 250px;
+	margin: 40px auto;
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+input[type="text"] {
+	width: 100%;
+	height: 30px;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+input[type="button"] {
+	width: 25%;
+	height: 30px;
+	margin: 10px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #4CAF50;
+	color: #fff;
+	cursor: pointer;
+}
+
+input[type="button"]:hover {
+	background-color: #3e8e41;
+}
+
+JavaScript (script.js):
+
+let display = document.getElementById('display');
+let calculation = [];
+
+function clearDisplay() {
+	display.value = '';
+	calculation = [];
+}
+
+function backspace() {
+	let currentValue = display.value;
+	display.value = currentValue.slice(0, -1);
+}
+
+function addNumber(number) {
+	display.value += number;
+}
+
+function addOperator(operator) {
+	display.value += operator;
+	calculation.push(operator);
+}
+
+function addDecimal() {
+	display.value += '.';
+}
+
+function calculate() {
+	let result = eval(display.value);
+	display.value = result;
+	calculation = [];
+}
+
+document.addEventListener('keydown', function(event) {
+	if (event.key === 'Enter') {
+		calculate();
+	}
+});
