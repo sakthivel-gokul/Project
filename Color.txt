@@ -1,0 +1,27 @@
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Generator</title>
+</head>
+<body>
+  <h1 id="color-display"></h1>
+  <button id="generate-button">Generate Color</button>
+  <script src="script.js"></script>
+</body>
+</html>
+
+// JavaScript (in script.js file)
+const colorDisplay = document.getElementById("color-display");
+const generateButton = document.getElementById("generate-button");
+
+generateButton.addEventListener("click", generateColor);
+
+function generateColor() {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  const color = `rgb(${red}, ${green}, ${blue})`;
+  colorDisplay.style.color = color;
+  colorDisplay.innerText = color;
+}
