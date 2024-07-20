@@ -1,0 +1,38 @@
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FAQ Page</title>
+</head>
+<body>
+  <h1>FAQ Page</h1>
+  <div id="faq-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+// JavaScript (in script.js file)
+const faqContainer = document.getElementById("faq-container");
+
+const faqs = [
+  {
+    question: "What is JavaScript?",
+    answer: "JavaScript is a programming language used for web development."
+  },
+  {
+    question: "What is HTML?",
+    answer: "HTML (HyperText Markup Language) is used for structuring content on the web."
+  },
+  {
+    question: "What is CSS?",
+    answer: "CSS (Cascading Style Sheets) is used for styling web pages."
+  }
+];
+
+faqs.forEach(faq => {
+  const faqHTML = `
+    <h2>${faq.question}</h2>
+    <p>${faq.answer}</p>
+  `;
+  faqContainer.innerHTML += faqHTML;
+});
